@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="edu.ucsd.mytest.WelcomeActivity" >
+
+    <Button
+        android:id="@+id/raw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Basic"
+        android:onClick="startBasicNetworking" />
+    
+     <Button
+         android:id="@+id/apache"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/raw"
+         android:layout_below="@+id/raw"
+         android:layout_marginTop="14dp"
+         android:text="Apache" 
+         android:onClick="startApacheNetworking" />
+
+     <Button
+         android:id="@+id/volley"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/apache"
+         android:layout_below="@+id/apache"
+         android:layout_marginTop="14dp"
+         android:onClick="startVolleyNetworking"
+         android:text="Volley" />
+
+    <Button
+        android:id="@+id/aah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/apache"
+        android:layout_below="@+id/volley"
+        android:layout_marginTop="14dp"
+        android:onClick="startAAHNetworking"
+        android:text="AAH" />
+
+    <Button
+        android:id="@+id/okhttp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/apache"
+        android:layout_below="@+id/aah"
+        android:layout_marginTop="14dp"
+        android:onClick="startOKNetworking"
+        android:text="OKHttp" />
+
+    <Button
+        android:id="@+id/volley2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/apache"
+        android:layout_below="@+id/okhttp"
+        android:layout_marginTop="14dp"
+        android:onClick="startAnotherVolleyNetworking"
+        android:text="Another volley" />
+
+    <Button
+        android:id="@+id/retrofit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/apache"
+        android:layout_below="@+id/volley2"
+        android:layout_marginTop="14dp"
+        android:onClick="startRetrofitNetworking"
+        android:text="Retrofit" />
+
+    <Button
+        android:id="@+id/loader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/apache"
+        android:layout_below="@+id/retrofit"
+        android:layout_marginTop="14dp"
+        android:onClick="startLoader"
+        android:text="Loader" />
+</RelativeLayout>

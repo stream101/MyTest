@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.ucsd.mytest" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".WelcomeActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".VolleyActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".AnotherVolleyActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".ApacheActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".AAHActivity"
+            android:label="@string/title_activity_aahnetworking" >
+        </activity>
+        <activity
+            android:name=".OkHttpActivity"
+            android:label="@string/title_activity_ok_http" >
+        </activity>
+
+        <service
+            android:name=".service.NetworkService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+
+        <activity
+            android:name=".BasicActivity"
+            android:label="@string/title_activity_basic" >
+        </activity>
+        <activity
+            android:name=".RetrofitActivity"
+            android:label="@string/title_activity_basic" >
+        </activity>
+        <activity
+            android:name=".LoaderActivity"
+            android:label="@string/title_activity_loader" >
+        </activity>
+
+        <!--<receiver
+            android:name=".service.ConnectionChangeReceiver"
+            android:enabled="true"
+            android:exported="true">
+        </receiver>-->
+    </application>
+
+</manifest>

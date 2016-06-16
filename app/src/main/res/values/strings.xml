@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PhotoGallery</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_aahnetworking">AAHNetworking</string>
+    <string name="title_activity_ok_http">OkHttpActivity</string>
+    <string name="title_activity_basic">BasicActivity</string>
+    <string name="title_activity_retrofit">RetrofitActivity</string>
+    <string name="title_activity_loader">LoaderActivity</string>
+
+</resources>
