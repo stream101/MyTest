@@ -22,15 +22,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:21.0.2'
     compile files('libs/okhttp-2.2.0.jar')
     compile files('libs/retrofit-1.9.0.jar')
-    compile files('libs/android-async-http-1.4.6.jar')
     compile files('libs/basic-http-client-android-0.88.jar')
     compile files('libs/gson-2.3.1.jar')
+    compile project(':library')
     //compile 'com.squareup.okio:okio:1.0.0'
     compile files('libs/volley.jar')
     compile project(':myannotation')
     apt project(':mycompiler')
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

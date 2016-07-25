@@ -88,7 +88,6 @@ import java.util.WeakHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.zip.GZIPInputStream;
-import android.util.Log;
 
 
 /**
@@ -116,7 +115,7 @@ import android.util.Log;
  * @see com.loopj.android.http.ResponseHandlerInterface
  * @see com.loopj.android.http.RequestParams
  */
-public class AsyncHttpClient {
+public class AnelClient {
 
     public static final String LOG_TAG = "AsyncHttpClient";
 
@@ -144,14 +143,26 @@ public class AsyncHttpClient {
     private final Map<String, String> clientHeaderMap;
     private boolean isUrlEncodingEnabled = true;
 
+    private Dispatcher dispatcher = null;
+    private Context context = null;
+
+
 
     /**
      * Creates a new AsyncHttpClient with default constructor arguments values
      */
-    public AsyncHttpClient() {
+    public AnelClient() {
         this(false, 80, 443);
 		//xinxin
 		Log.d(LOG_TAG, "Create AsyncHttpClient");
+    }
+
+    public AnelClient(Context context) {
+        this(false, 80, 443);
+        this.context = context;
+        this.dispatcher = new Dispatcher(context, threadPool);
+
+        Log.d(LOG_TAG, "Create AsyncHttpClient with context " + context);
     }
 
     /**
@@ -159,7 +170,7 @@ public class AsyncHttpClient {
      *
      * @param httpPort non-standard HTTP-only port
      */
-    public AsyncHttpClient(int httpPort) {
+    public AnelClient(int httpPort) {
         this(false, httpPort, 443);
     }
 
@@ -169,7 +180,7 @@ public class AsyncHttpClient {
      * @param httpPort  non-standard HTTP-only port
      * @param httpsPort non-standard HTTPS-only port
      */
-    public AsyncHttpClient(int httpPort, int httpsPort) {
+    public AnelClient(int httpPort, int httpsPort) {
         this(false, httpPort, httpsPort);
     }
 
@@ -180,7 +191,7 @@ public class AsyncHttpClient {
      * @param httpPort                   HTTP port to be used, must be greater than 0
      * @param httpsPort                  HTTPS port to be used, must be greater than 0
      */
-    public AsyncHttpClient(boolean fixNoHttpResponseException, int httpPort, int httpsPort) {
+    public AnelClient(boolean fixNoHttpResponseException, int httpPort, int httpsPort) {
         this(getDefaultSchemeRegistry(fixNoHttpResponseException, httpPort, httpsPort));
     }
 
@@ -227,7 +238,7 @@ public class AsyncHttpClient {
      *
      * @param schemeRegistry SchemeRegistry to be used
      */
-    public AsyncHttpClient(SchemeRegistry schemeRegistry) {
+    public AnelClient(SchemeRegistry schemeRegistry) {
 
         BasicHttpParams httpParams = new BasicHttpParams();
 
@@ -1291,6 +1302,13 @@ public class AsyncHttpClient {
         return requestHandle;
     }
 
+    //resubmit a request
+    protected RequestHandle resubmitRequest(AsyncHttpRequest request) {
+        threadPool.submit(request);
+        RequestHandle requestHandle = new RequestHandle(request);
+        return requestHandle;
+    }
+
     /**
      * Sets state of URL encoding feature, see bug #227, this method allows you to turn off and on
      * this auto-magic feature on-demand.
@@ -1495,9 +1513,9 @@ public class AsyncHttpClient {
 
         @Override
         public void consumeContent() throws IOException {
-            AsyncHttpClient.silentCloseInputStream(wrappedStream);
-            AsyncHttpClient.silentCloseInputStream(pushbackStream);
-            AsyncHttpClient.silentCloseInputStream(gzippedStream);
+            AnelClient.silentCloseInputStream(wrappedStream);
+            AnelClient.silentCloseInputStream(pushbackStream);
+            AnelClient.silentCloseInputStream(gzippedStream);
             super.consumeContent();
         }
     }

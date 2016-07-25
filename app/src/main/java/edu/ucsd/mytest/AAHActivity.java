@@ -11,17 +11,17 @@ import org.apache.http.Header;
 
 public class AAHActivity extends ActionBarActivity {
 
-    final String TAG="AsyncHttpClient";
-    final TextView tv=(TextView)findViewById(R.id.aah_text);
+    final String TAG="AAHActivity";
     final String URL= "http://www.google.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aahnetworking);
-        //final TextView tv=(TextView)findViewById(R.id.aah_text);
+        final TextView tv=(TextView)findViewById(R.id.aah_text);
+        AAHHelper httpHelper = new AAHHelper(getApplicationContext());
 
-       AAHHelper.get(URL, new AsyncHttpResponseHandler() {
+       httpHelper.get(URL, new AsyncHttpResponseHandler() {
            @Override
            public void onSuccess(int i, Header[] headers, byte[] bytes) {
                //Log.d(TAG, "response " + new String(bytes));
@@ -39,7 +39,7 @@ public class AAHActivity extends ActionBarActivity {
        });
 
 
-       AAHHelper.post(URL, null, new AsyncHttpResponseHandler() {
+      /* AAHHelper.post(URL, null, new AsyncHttpResponseHandler() {
            @Override
            public void onSuccess(int i, Header[] headers, byte[] bytes) {
            }
@@ -47,7 +47,7 @@ public class AAHActivity extends ActionBarActivity {
            @Override
            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
            }
-       });
+       });*/
 
 
 

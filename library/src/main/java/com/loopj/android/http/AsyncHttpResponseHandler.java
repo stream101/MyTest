@@ -35,7 +35,7 @@ import java.io.InputStream;
 import java.net.URI;
 
 /**
- * Used to intercept and handle the responses from requests made using {@link AsyncHttpClient}. The
+ * Used to intercept and handle the responses from requests made using {@link AnelClient}. The
  * {@link #onSuccess(int, org.apache.http.Header[], byte[])} method is designed to be anonymously
  * overridden with your own response handling code. <p>&nbsp;</p> Additionally, you can override the
  * {@link #onFailure(int, org.apache.http.Header[], byte[], Throwable)}, {@link #onStart()}, {@link
@@ -272,11 +272,13 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
 
     @Override
     final public void sendSuccessMessage(int statusCode, Header[] headers, byte[] responseBytes) {
+        Log.d(LOG_TAG, "send success message");
         sendMessage(obtainMessage(SUCCESS_MESSAGE, new Object[]{statusCode, headers, responseBytes}));
     }
 
     @Override
     final public void sendFailureMessage(int statusCode, Header[] headers, byte[] responseBody, Throwable throwable) {
+        Log.d(LOG_TAG, "send failure message");
         sendMessage(obtainMessage(FAILURE_MESSAGE, new Object[]{statusCode, headers, responseBody, throwable}));
     }
 
@@ -438,8 +440,8 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
                             sendProgressMessage(count, (int) (contentLength <= 0 ? 1 : contentLength));
                         }
                     } finally {
-                        AsyncHttpClient.silentCloseInputStream(instream);
-                        AsyncHttpClient.endEntityViaReflection(entity);
+                        AnelClient.silentCloseInputStream(instream);
+                        AnelClient.endEntityViaReflection(entity);
                     }
                     responseBody = buffer.toByteArray();
                 } catch (OutOfMemoryError e) {

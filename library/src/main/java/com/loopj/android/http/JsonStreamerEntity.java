@@ -66,13 +66,13 @@ public class JsonStreamerEntity implements HttpEntity {
 
     private static final Header HEADER_JSON_CONTENT =
             new BasicHeader(
-                    AsyncHttpClient.HEADER_CONTENT_TYPE,
+                    AnelClient.HEADER_CONTENT_TYPE,
                     RequestParams.APPLICATION_JSON);
 
     private static final Header HEADER_GZIP_ENCODING =
             new BasicHeader(
-                    AsyncHttpClient.HEADER_CONTENT_ENCODING,
-                    AsyncHttpClient.ENCODING_GZIP);
+                    AnelClient.HEADER_CONTENT_ENCODING,
+                    AnelClient.ENCODING_GZIP);
 
     // JSON data and associated meta-data to be uploaded.
     private final Map<String, Object> jsonParams = new HashMap<String, Object>();
@@ -225,7 +225,7 @@ public class JsonStreamerEntity implements HttpEntity {
 
         // Flush the contents up the stream.
         os.flush();
-        AsyncHttpClient.silentCloseOutputStream(os);
+        AnelClient.silentCloseOutputStream(os);
     }
 
     private void writeToFromStream(OutputStream os, RequestParams.StreamWrapper entry)
@@ -246,7 +246,7 @@ public class JsonStreamerEntity implements HttpEntity {
         }
 
         // Close the Base64 output stream.
-        AsyncHttpClient.silentCloseOutputStream(bos);
+        AnelClient.silentCloseOutputStream(bos);
 
         // End the meta data.
         endMetaData(os);
@@ -254,7 +254,7 @@ public class JsonStreamerEntity implements HttpEntity {
         // Close input stream.
         if (entry.autoClose) {
             // Safely close the input stream.
-            AsyncHttpClient.silentCloseInputStream(entry.inputStream);
+            AnelClient.silentCloseInputStream(entry.inputStream);
         }
     }
 
@@ -281,13 +281,13 @@ public class JsonStreamerEntity implements HttpEntity {
         }
 
         // Close the Base64 output stream.
-        AsyncHttpClient.silentCloseOutputStream(bos);
+        AnelClient.silentCloseOutputStream(bos);
 
         // End the meta data.
         endMetaData(os);
 
         // Safely close the input stream.
-        AsyncHttpClient.silentCloseInputStream(in);
+        AnelClient.silentCloseInputStream(in);
     }
 
     private void writeMetaData(OutputStream os, String name, String contentType) throws IOException {

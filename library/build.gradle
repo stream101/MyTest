@@ -23,6 +23,10 @@ android {
     }
 }
 
+dependencies {
+}
+
+
 android.libraryVariants.all { variant ->
     def name = variant.buildType.name
     def task = project.tasks.create "jar${name.capitalize()}", Jar

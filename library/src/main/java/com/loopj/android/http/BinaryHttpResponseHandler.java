@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 /**
- * Used to intercept and handle the responses from requests made using {@link AsyncHttpClient}.
+ * Used to intercept and handle the responses from requests made using {@link AnelClient}.
  * Receives response body as byte array with a content-type whitelist. (e.g. checks Content-Type
  * against allowed list, Content-length). <p>&nbsp;</p> For example: <p>&nbsp;</p>
  * <pre>
@@ -101,7 +101,7 @@ public abstract class BinaryHttpResponseHandler extends AsyncHttpResponseHandler
     @Override
     public final void sendResponseMessage(HttpResponse response) throws IOException {
         StatusLine status = response.getStatusLine();
-        Header[] contentTypeHeaders = response.getHeaders(AsyncHttpClient.HEADER_CONTENT_TYPE);
+        Header[] contentTypeHeaders = response.getHeaders(AnelClient.HEADER_CONTENT_TYPE);
         if (contentTypeHeaders.length != 1) {
             //malformed/ambiguous HTTP Header, ABORT!
             sendFailureMessage(

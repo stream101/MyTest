@@ -156,9 +156,9 @@ public abstract class FileAsyncHttpResponseHandler extends AsyncHttpResponseHand
                         sendProgressMessage(count, (int) contentLength);
                     }
                 } finally {
-                    AsyncHttpClient.silentCloseInputStream(instream);
+                    AnelClient.silentCloseInputStream(instream);
                     buffer.flush();
-                    AsyncHttpClient.silentCloseOutputStream(buffer);
+                    AnelClient.silentCloseOutputStream(buffer);
                 }
             }
         }

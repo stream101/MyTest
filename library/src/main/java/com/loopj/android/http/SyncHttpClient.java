@@ -28,9 +28,9 @@ import org.apache.http.protocol.HttpContext;
  * Processes http requests in synchronous mode, so your caller thread will be blocked on each
  * request
  *
- * @see com.loopj.android.http.AsyncHttpClient
+ * @see AnelClient
  */
-public class SyncHttpClient extends AsyncHttpClient {
+public class SyncHttpClient extends AnelClient {
 
     /**
      * Creates a new SyncHttpClient with default constructor arguments values
@@ -84,7 +84,7 @@ public class SyncHttpClient extends AsyncHttpClient {
                                         String contentType, ResponseHandlerInterface responseHandler,
                                         Context context) {
         if (contentType != null) {
-            uriRequest.addHeader(AsyncHttpClient.HEADER_CONTENT_TYPE, contentType);
+            uriRequest.addHeader(AnelClient.HEADER_CONTENT_TYPE, contentType);
         }
 
         responseHandler.setUseSynchronousMode(true);

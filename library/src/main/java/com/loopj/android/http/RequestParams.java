@@ -44,7 +44,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A collection of string request parameters or files to send along with requests made from an
- * {@link AsyncHttpClient} instance. <p>&nbsp;</p> For example: <p>&nbsp;</p>
+ * {@link AnelClient} instance. <p>&nbsp;</p> For example: <p>&nbsp;</p>
  * <pre>
  * RequestParams params = new RequestParams();
  * params.put("username", "james");

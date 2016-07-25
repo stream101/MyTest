@@ -106,7 +106,7 @@ public abstract class SaxAsyncHttpResponseHandler<T extends DefaultHandler> exte
                 } catch (ParserConfigurationException e) {
                     Log.e(LOG_TAG, "getResponseData exception", e);
                 } finally {
-                    AsyncHttpClient.silentCloseInputStream(instream);
+                    AnelClient.silentCloseInputStream(instream);
                     if (inputStreamReader != null) {
                         try {
                             inputStreamReader.close();

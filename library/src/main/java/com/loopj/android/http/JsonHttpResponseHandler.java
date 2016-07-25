@@ -28,7 +28,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 /**
- * Used to intercept and handle the responses from requests made using {@link AsyncHttpClient}, with
+ * Used to intercept and handle the responses from requests made using {@link AnelClient}, with
  * automatic parsing into a {@link JSONObject} or {@link JSONArray}. <p>&nbsp;</p> This class is
  * designed to be passed to get, post, put and delete requests with the {@link #onSuccess(int,
  * org.apache.http.Header[], org.json.JSONArray)} or {@link #onSuccess(int,

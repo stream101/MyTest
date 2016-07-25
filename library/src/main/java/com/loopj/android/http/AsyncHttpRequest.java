@@ -112,6 +112,9 @@ public class AsyncHttpRequest implements Runnable {
             } else {
                 Log.e("AsyncHttpRequest", "makeRequestWithRetries returned error", e);
             }
+
+            //xinxin: Queue failed request
+            Dispatcher.saveFailedRequest(this);
         }
 
         if (isCancelled()) {

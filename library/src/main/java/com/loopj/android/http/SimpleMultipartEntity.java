@@ -142,7 +142,7 @@ class SimpleMultipartEntity implements HttpEntity {
         out.write(CR_LF);
         out.flush();
 
-        AsyncHttpClient.silentCloseOutputStream(out);
+        AnelClient.silentCloseOutputStream(out);
     }
 
     private String normalizeContentType(String type) {
@@ -150,19 +150,19 @@ class SimpleMultipartEntity implements HttpEntity {
     }
 
     private byte[] createContentType(String type) {
-        String result = AsyncHttpClient.HEADER_CONTENT_TYPE + ": " + normalizeContentType(type) + STR_CR_LF;
+        String result = AnelClient.HEADER_CONTENT_TYPE + ": " + normalizeContentType(type) + STR_CR_LF;
         return result.getBytes();
     }
 
     private byte[] createContentDisposition(String key) {
         return (
-                AsyncHttpClient.HEADER_CONTENT_DISPOSITION +
+                AnelClient.HEADER_CONTENT_DISPOSITION +
                         ": form-data; name=\"" + key + "\"" + STR_CR_LF).getBytes();
     }
 
     private byte[] createContentDisposition(String key, String fileName) {
         return (
-                AsyncHttpClient.HEADER_CONTENT_DISPOSITION +
+                AnelClient.HEADER_CONTENT_DISPOSITION +
                         ": form-data; name=\"" + key + "\"" +
                         "; filename=\"" + fileName + "\"" + STR_CR_LF).getBytes();
     }
@@ -222,7 +222,7 @@ class SimpleMultipartEntity implements HttpEntity {
             out.write(CR_LF);
             updateProgress(CR_LF.length);
             out.flush();
-            AsyncHttpClient.silentCloseInputStream(inputStream);
+            AnelClient.silentCloseInputStream(inputStream);
         }
     }
 
@@ -245,7 +245,7 @@ class SimpleMultipartEntity implements HttpEntity {
     @Override
     public Header getContentType() {
         return new BasicHeader(
-                AsyncHttpClient.HEADER_CONTENT_TYPE,
+                AnelClient.HEADER_CONTENT_TYPE,
                 "multipart/form-data; boundary=" + boundary);
     }
 

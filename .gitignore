@@ -2,5 +2,9 @@
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
+/.idea/inspectionProfiles/
+/.idea/runConfigurations.xml
+/.idea/vcs.xml
 .DS_Store
 /build
+/library/build
