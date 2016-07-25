@@ -21,7 +21,7 @@ public class AAHActivity extends ActionBarActivity {
         final TextView tv=(TextView)findViewById(R.id.aah_text);
         AAHHelper httpHelper = new AAHHelper(getApplicationContext());
 
-       httpHelper.get(URL, new AsyncHttpResponseHandler() {
+       httpHelper.get(URL, new AsyncHttpResponseHandler(this) {
            @Override
            public void onSuccess(int i, Header[] headers, byte[] bytes) {
                //Log.d(TAG, "response " + new String(bytes));

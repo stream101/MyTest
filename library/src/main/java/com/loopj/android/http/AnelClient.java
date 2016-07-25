@@ -1302,12 +1302,6 @@ public class AnelClient {
         return requestHandle;
     }
 
-    //resubmit a request
-    protected RequestHandle resubmitRequest(AsyncHttpRequest request) {
-        threadPool.submit(request);
-        RequestHandle requestHandle = new RequestHandle(request);
-        return requestHandle;
-    }
 
     /**
      * Sets state of URL encoding feature, see bug #227, this method allows you to turn off and on

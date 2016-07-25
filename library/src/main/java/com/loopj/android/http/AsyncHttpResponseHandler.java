@@ -18,10 +18,12 @@
 
 package com.loopj.android.http;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -101,6 +103,7 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
     private URI requestURI = null;
     private Header[] requestHeaders = null;
     private Looper looper = null;
+    private Context context = null;
 
     @Override
     public URI getRequestURI() {
@@ -182,9 +185,13 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
      * Creates a new AsyncHttpResponseHandler
      */
     public AsyncHttpResponseHandler() {
-        this(null);
+        this(null, null);
     }
 
+    //create a AsynchttpResponseHandler with context
+    public AsyncHttpResponseHandler(Context context) {
+        this(context, null);
+    }
     /**
      * Creates a new AsyncHttpResponseHandler with a user-supplied looper. If
      * the passed looper is null, the looper attached to the current thread will
@@ -192,7 +199,8 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
      *
      * @param looper The looper to work with
      */
-    public AsyncHttpResponseHandler(Looper looper) {
+    public AsyncHttpResponseHandler(Context context, Looper looper) {
+        this.context = context;
         this.looper = looper == null ? Looper.myLooper() : looper;
         // Use asynchronous mode by default.
         setUseSynchronousMode(false);
@@ -319,6 +327,8 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
                 response = (Object[]) message.obj;
                 if (response != null && response.length >= 4) {
                     onFailure((Integer) response[0], (Header[]) response[1], (byte[]) response[2], (Throwable) response[3]);
+                    //TBD: Add if(userReq)
+                    Toast.makeText(this.context, "Network error", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.e(LOG_TAG, "FAILURE_MESSAGE didn't got enough params");
                 }
