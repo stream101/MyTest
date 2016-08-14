@@ -10,5 +10,6 @@
     <string name="title_activity_basic">BasicActivity</string>
     <string name="title_activity_retrofit">RetrofitActivity</string>
     <string name="title_activity_loader">LoaderActivity</string>
+    <string name="title_activity_anel_ok">AnelOKActivity</string>
 
 </resources>

@@ -56,6 +56,17 @@
         android:text="OKHttp" />
 
     <Button
+        android:id="@+id/anelokhttp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/apache"
+        android:layout_below="@+id/okhttp"
+        android:layout_marginTop="14dp"
+        android:onClick="startAnelOkNetworking"
+        android:text="AnelOKHttp" />
+
+
+    <!--Button
         android:id="@+id/volley2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -83,5 +94,5 @@
         android:layout_below="@+id/retrofit"
         android:layout_marginTop="14dp"
         android:onClick="startLoader"
-        android:text="Loader" />
+        android:text="Loader" /-->
 </RelativeLayout>

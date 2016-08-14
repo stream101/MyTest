@@ -3,7 +3,6 @@ package edu.ucsd.mytest;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.http.AndroidHttpClient;
 import android.os.Environment;
 import android.util.Log;
 
@@ -13,9 +12,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpClientStack;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -79,8 +76,8 @@ public class HttpHelper {
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
             //Use apache stack to eliminate the impact of okhttp in hurl
-            mRequestQueue = Volley.newRequestQueue(mContext
-                    .getApplicationContext(), new HttpClientStack(AndroidHttpClient.newInstance("volley/0")));
+          //  mRequestQueue = Volley.newRequestQueue(mContext
+           //         .getApplicationContext(), new HttpClientStack(AndroidHttpClient.newInstance("volley/0")));
         }
         return mRequestQueue;
     }

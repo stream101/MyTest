@@ -6,7 +6,8 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="edu.ucsd.mytest.OkHttpActivity">
 
-    <TextView android:text="okhttp" android:layout_width="wrap_content"
+    <TextView android:id="@+id/okhttp_text"  android:text="okhttp" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
 
 </RelativeLayout>

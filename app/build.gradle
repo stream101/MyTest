@@ -24,7 +24,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:21.0.2'
-    compile files('libs/okhttp-2.2.0.jar')
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile files('libs/retrofit-1.9.0.jar')
     compile files('libs/basic-http-client-android-0.88.jar')
     compile files('libs/gson-2.3.1.jar')
@@ -34,4 +34,5 @@ dependencies {
     compile project(':myannotation')
     apt project(':mycompiler')
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }

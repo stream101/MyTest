@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.ucsd.mytest" >
+    package="edu.ucsd.mytest">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".WelcomeActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,49 +23,48 @@
         </activity>
         <activity
             android:name=".VolleyActivity"
-            android:label="@string/app_name" >
-        </activity>
+            android:label="@string/app_name"></activity>
         <activity
             android:name=".AnotherVolleyActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name=".ApacheActivity"
-            android:label="@string/app_name" >
-        </activity>
+            android:label="@string/app_name"></activity>
         <activity
             android:name=".AAHActivity"
-            android:label="@string/title_activity_aahnetworking" >
-        </activity>
+            android:label="@string/title_activity_aahnetworking"></activity>
         <activity
             android:name=".OkHttpActivity"
-            android:label="@string/title_activity_ok_http" >
-        </activity>
+            android:label="@string/title_activity_ok_http"></activity>
 
+        <activity
+            android:name=".AnelOKActivity"
+            android:label="AnelOkActivity"></activity>
         <service
             android:name=".service.NetworkService"
             android:enabled="true"
-            android:exported="true" >
-        </service>
+            android:exported="true"></service>
 
-        <activity
+        <!--
+        activity
             android:name=".BasicActivity"
-            android:label="@string/title_activity_basic" >
-        </activity>
-        <activity
-            android:name=".RetrofitActivity"
             android:label="@string/title_activity_basic" >
         </activity>
         <activity
             android:name=".LoaderActivity"
             android:label="@string/title_activity_loader" >
-        </activity>
+        </activity
+        -->
 
-        <!--<receiver
+
+
+        <receiver
             android:name=".service.ConnectionChangeReceiver"
             android:enabled="true"
             android:exported="true">
-        </receiver>-->
+        </receiver>
+
+        <!--
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" /-->
     </application>
 
 </manifest>

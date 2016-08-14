@@ -30,12 +30,12 @@ import org.apache.http.protocol.HttpContext;
  *
  * @see AnelClient
  */
-public class SyncHttpClient extends AnelClient {
+public class AnelSyncClient extends AnelClient {
 
     /**
      * Creates a new SyncHttpClient with default constructor arguments values
      */
-    public SyncHttpClient() {
+    public AnelSyncClient() {
         super(false, 80, 443);
     }
 
@@ -44,7 +44,7 @@ public class SyncHttpClient extends AnelClient {
      *
      * @param httpPort non-standard HTTP-only port
      */
-    public SyncHttpClient(int httpPort) {
+    public AnelSyncClient(int httpPort) {
         super(false, httpPort, 443);
     }
 
@@ -54,7 +54,7 @@ public class SyncHttpClient extends AnelClient {
      * @param httpPort  non-standard HTTP-only port
      * @param httpsPort non-standard HTTPS-only port
      */
-    public SyncHttpClient(int httpPort, int httpsPort) {
+    public AnelSyncClient(int httpPort, int httpsPort) {
         super(false, httpPort, httpsPort);
     }
 
@@ -65,7 +65,7 @@ public class SyncHttpClient extends AnelClient {
      * @param httpPort                   HTTP port to be used, must be greater than 0
      * @param httpsPort                  HTTPS port to be used, must be greater than 0
      */
-    public SyncHttpClient(boolean fixNoHttpResponseException, int httpPort, int httpsPort) {
+    public AnelSyncClient(boolean fixNoHttpResponseException, int httpPort, int httpsPort) {
         super(fixNoHttpResponseException, httpPort, httpsPort);
     }
 
@@ -74,7 +74,7 @@ public class SyncHttpClient extends AnelClient {
      *
      * @param schemeRegistry SchemeRegistry to be used
      */
-    public SyncHttpClient(SchemeRegistry schemeRegistry) {
+    public AnelSyncClient(SchemeRegistry schemeRegistry) {
         super(schemeRegistry);
     }
 

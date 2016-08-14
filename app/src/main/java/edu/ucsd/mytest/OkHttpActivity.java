@@ -2,81 +2,34 @@ package edu.ucsd.mytest;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
+import android.widget.TextView;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class OkHttpActivity extends ActionBarActivity {
     final String TAG="okhttp";
-    final Handler mainHandler = new Handler(this.getMainLooper());
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ok_http);
-
-        String url="http://www.google.com";
-        OkHttpClient client = new OkHttpClient();
-        client.setConnectTimeout(0, TimeUnit.SECONDS); // connect timeout
-        client.setReadTimeout(0, TimeUnit.SECONDS);    // socket timeout
-        client.setRetryOnConnectionFailure(true);
+        tv = (TextView)findViewById(R.id.okhttp_text);
 
         //new FetchItemsTask().execute();
         Thread t = new Thread(new FetchItemsThread());
         t.start();
 
-
-        Request request = new Request.Builder().url(url).post(null).build();
-        Call call = client.newCall(request);
-
-
-        call.enqueue(new Callback() {
-            //possible error:
-            // a. no complete error message in onFailure because IOException is obscure
-            // b. no timeout so no Response
-            public void onFailure(Request request, IOException e) {
-                Log.e(TAG, "Failed to execute " + request, e);
-               // Toast.makeText(getApplicationContext(), "okhttp error", Toast.LENGTH_LONG).show();
-               handleError();
-
-               runOnUiThread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        alertDialog();
-                    }
-               });
-
-            }
-
-            public void onResponse(Response response) throws IOException {
-                if (!response.isSuccessful()) {
-                    throw new IOException("Unexpected code " + response);
-                }
-                 Log.d(TAG, response.body().string());
-            }
-        });
     }
 
-    void handleError() {
-        mainHandler.post(new Runnable() {
 
-            @Override
-            public void run() {
-                alertDialog();
-            }
-        });
-    }
 
 
     void alertDialog () {
@@ -89,23 +42,28 @@ public class OkHttpActivity extends ActionBarActivity {
         @Override
         public void run() {
             String url="http://www.google.com";
-            String result = null;
             Response response = null;
 
            // GetExample example = new GetExample();
             try {
                 OkHttpClient client = new OkHttpClient();
-                client.setConnectTimeout(0, TimeUnit.SECONDS); // connect timeout
-                client.setReadTimeout(0, TimeUnit.SECONDS);    // socket timeout
 
                 Request request = new Request.Builder().url(url).build();
 
                 response= client.newCall(request).execute();
-                result = response.body().string();
+                final String result = response.body().string();
                 if (result == null)
                     Log.d(TAG, "result is null " );
-                else
-                    Log.d(TAG, "Has result : " + result );
+                else {
+                    Log.d(TAG, "Has result : " + result);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tv.setText(result);
+                        }
+                    });
+                }
             } catch (IOException e) {
                 // Note: java compiler force to catch IO exception with newCall().execute(). And
                  //when there is network failure (e.g. socketTimeout, UnknownHost), it will execute

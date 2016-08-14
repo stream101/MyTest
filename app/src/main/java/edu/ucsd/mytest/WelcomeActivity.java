@@ -42,8 +42,8 @@ public class WelcomeActivity extends ActionBarActivity {
     }
 
     public void startApacheNetworking(View view) {
-       Intent i = new Intent(this, ApacheActivity.class);
-       startActivity(i);
+      // Intent i = new Intent(this, ApacheActivity.class);
+       //startActivity(i);
     }
 
 
@@ -67,15 +67,21 @@ public class WelcomeActivity extends ActionBarActivity {
        startActivity(i);
     }
 
-    public void startRetrofitNetworking(View view) {
-        Intent i = new Intent(this, RetrofitActivity.class);
+    public void startAnelOkNetworking(View view) {
+        Intent i = new Intent(this, AnelOKActivity.class);
         startActivity(i);
+    }
+
+    public void startRetrofitNetworking(View view) {
+        //Intent i = new Intent(this, RetrofitActivity.class);
+        //startActivity(i);
     }
 
     public void startLoader(View view) {
         Intent i = new Intent(this, LoaderActivity.class);
         startActivity(i);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //Inflate the menu; this adds items to the action bar if it is present.
