@@ -1,6 +1,8 @@
-package edu.ucsd;
+package edu.ucsd.mycompiler;
 
 import javax.lang.model.element.TypeElement;
+
+import edu.ucsd.myannotation.SetReq;
 
 /**
  * Created by xinxin on 3/14/16.

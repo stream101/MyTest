@@ -8,37 +8,39 @@ import android.widget.TextView;
 
 import java.io.IOException;
 
+import edu.ucsd.myannotation.SetReq;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-
 public class OkHttpActivity extends ActionBarActivity {
     final String TAG="okhttp";
+    @SetReq(timeout=30, retry = 2)
     TextView tv;
 
+
+    @SetReq(timeout=30, retry = 2)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ok_http);
-        tv = (TextView)findViewById(R.id.okhttp_text);
+         tv = (TextView)findViewById(R.id.okhttp_text);
 
-        //new FetchItemsTask().execute();
+        @SetReq(timeout=30, retry = 2)
         Thread t = new Thread(new FetchItemsThread());
         t.start();
 
     }
-
-
-
 
     void alertDialog () {
         new AlertDialog.Builder(this).setTitle("Error").setMessage("Watch out!").show();
     }
 
 
+    @SetReq(timeout=30, retry = 2)
     private class FetchItemsThread implements Runnable {
 
+        @SetReq(timeout=30, retry = 2)
         @Override
         public void run() {
             String url="http://www.google.com";
@@ -46,6 +48,7 @@ public class OkHttpActivity extends ActionBarActivity {
 
            // GetExample example = new GetExample();
             try {
+                @SetReq(timeout=30, retry = 2)
                 OkHttpClient client = new OkHttpClient();
 
                 Request request = new Request.Builder().url(url).build();

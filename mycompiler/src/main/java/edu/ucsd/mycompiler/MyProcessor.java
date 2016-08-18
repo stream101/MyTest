@@ -1,4 +1,4 @@
-package edu.ucsd;
+package edu.ucsd.mycompiler;
 
 import com.google.auto.service.AutoService;
 
@@ -13,11 +13,12 @@ import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
+
+import edu.ucsd.myannotation.SetReq;
 
 /**
  * about Element:
@@ -41,7 +42,7 @@ public final class MyProcessor extends AbstractProcessor {
     private Elements elementUtils;
     private Filer filer;
     private Messager messager;
-    String TAG = "[XINXIN] ";
+    String TAG = "MyProcessor";
 
     @Override public synchronized void init(ProcessingEnvironment env) {
         super.init(env);
@@ -56,6 +57,7 @@ public final class MyProcessor extends AbstractProcessor {
     public Set<String> getSupportedAnnotationTypes() {
         Set<String> types = new LinkedHashSet<>();
         types.add(SetReq.class.getCanonicalName());
+        debug ("add annotation type: " + SetReq.class.getCanonicalName() );
         return types;
     }
 
@@ -67,6 +69,7 @@ public final class MyProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+        debug("jin xinxin enter process !!\n");
         // iterate over all @SetReq annotated
         for (Element annotatedElement : roundEnv.getElementsAnnotatedWith(SetReq.class)) {
             debug(annotatedElement, "asType: " + annotatedElement.asType().toString() + '\n'
@@ -74,15 +77,15 @@ public final class MyProcessor extends AbstractProcessor {
                   +  "getEnclosingElement: " + annotatedElement.getEnclosingElement() + '\n');
 
             //currently on process class
-            if (annotatedElement.getKind() != ElementKind.CLASS) {
-                error(annotatedElement, "annotation type not supported");
-            }
+            //if (annotatedElement.getKind() != ElementKind.CLASS) {
+            //    error(annotatedElement, "annotation type not supported");
+            //}
 
             // We can cast it, because we know that it of ElementKind.CLASS
-            TypeElement typeElement = (TypeElement) annotatedElement;
+            //TypeElement typeElement = (TypeElement) annotatedElement;
 
             //get annotated var and annotation information
-            AnnotatedClass annotatedClass= new AnnotatedClass(typeElement);
+            //AnnotatedClass annotatedClass= new AnnotatedClass(typeElement);
 
             //TBD: check validity
 
@@ -110,5 +113,9 @@ public final class MyProcessor extends AbstractProcessor {
 
     public void debug(Element e, String msg) {
         messager.printMessage(Diagnostic.Kind.OTHER, TAG + msg, e);
+    }
+
+    public void debug(String msg) {
+        messager.printMessage(Diagnostic.Kind.OTHER, msg);
     }
 }
