@@ -2,7 +2,7 @@ package edu.ucsd.mycompiler;
 
 import javax.lang.model.element.TypeElement;
 
-import edu.ucsd.myannotation.SetReq;
+import edu.ucsd.myannotation.Anel_property;
 
 /**
  * Created by xinxin on 3/14/16.
@@ -17,9 +17,9 @@ public class AnnotatedClass {
 
     public AnnotatedClass(TypeElement classElement) {
         this.annotatedClassElement = classElement;
-        SetReq annotation = classElement.getAnnotation(SetReq.class);
-        timeout = annotation.timeout();
-        retry = annotation.retry();
+        Anel_property annotation = classElement.getAnnotation(Anel_property.class);
+        //timeout = annotation.timeout();
+        //retry = annotation.retry();
     }
 
     public int getTimeout(){return timeout;}

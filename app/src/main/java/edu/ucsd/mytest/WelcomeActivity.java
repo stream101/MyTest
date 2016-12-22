@@ -23,8 +23,8 @@ public class WelcomeActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        volleyButton=(Button)findViewById(R.id.volley);
-        rawButton=(Button)findViewById(R.id.raw);
+       // volleyButton=(Button)findViewById(R.id.volley);
+        //rawButton=(Button)findViewById(R.id.raw);
         aahButton=(Button)findViewById(R.id.aah);
         okButton = (Button)findViewById(R.id.okhttp);
 
@@ -36,26 +36,26 @@ public class WelcomeActivity extends ActionBarActivity {
 
     }
 
-    public void startBasicNetworking(View view) {
-        Intent i = new Intent(this, BasicActivity.class);
-        startActivity(i);
-    }
-
-    public void startApacheNetworking(View view) {
-      // Intent i = new Intent(this, ApacheActivity.class);
-       //startActivity(i);
-    }
-
-
-    public void startVolleyNetworking(View view) {
-        Intent i = new Intent(this, VolleyActivity.class);
-        startActivity(i);
-    }
-
-    public void startAnotherVolleyNetworking(View view) {
-        Intent i = new Intent(this, AnotherVolleyActivity.class);
-        startActivity(i);
-    }
+//    public void startBasicNetworking(View view) {
+//        Intent i = new Intent(this, BasicActivity.class);
+//        startActivity(i);
+//    }
+//
+//    public void startApacheNetworking(View view) {
+//      // Intent i = new Intent(this, ApacheActivity.class);
+//       //startActivity(i);
+//    }
+//
+//
+//    public void startVolleyNetworking(View view) {
+//        Intent i = new Intent(this, VolleyActivity.class);
+//        startActivity(i);
+//    }
+//
+//    public void startAnotherVolleyNetworking(View view) {
+//        Intent i = new Intent(this, AnotherVolleyActivity.class);
+//        startActivity(i);
+//    }
 
     public void startAAHNetworking(View view) {
        Intent i = new Intent(this, AAHActivity.class);
@@ -72,15 +72,15 @@ public class WelcomeActivity extends ActionBarActivity {
         startActivity(i);
     }
 
-    public void startRetrofitNetworking(View view) {
-        //Intent i = new Intent(this, RetrofitActivity.class);
-        //startActivity(i);
-    }
-
-    public void startLoader(View view) {
-        Intent i = new Intent(this, LoaderActivity.class);
-        startActivity(i);
-    }
+//    public void startRetrofitNetworking(View view) {
+//        //Intent i = new Intent(this, RetrofitActivity.class);
+//        //startActivity(i);
+//    }
+//
+//    public void startLoader(View view) {
+//        Intent i = new Intent(this, LoaderActivity.class);
+//        startActivity(i);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

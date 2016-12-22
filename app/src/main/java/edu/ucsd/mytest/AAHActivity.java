@@ -5,9 +5,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
 import org.apache.http.Header;
+
+import me.anel.AsyncHttpResponseHandler;
 
 public class AAHActivity extends ActionBarActivity {
 

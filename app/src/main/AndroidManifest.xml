@@ -23,24 +23,27 @@
         </activity>
         <activity
             android:name=".VolleyActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".AnotherVolleyActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".AAHActivity"
-            android:label="@string/title_activity_aahnetworking"></activity>
+            android:label="@string/title_activity_aahnetworking" />
         <activity
             android:name=".OkHttpActivity"
-            android:label="@string/title_activity_ok_http"></activity>
-
+            android:label="@string/title_activity_ok_http" />
         <activity
             android:name=".AnelOKActivity"
-            android:label="AnelOkActivity"></activity>
+            android:label="AnelOkActivity" />
+        <activity
+            android:name=".AnelAAHActivity"
+            android:label="AnelAAHActivity" />
+
         <service
             android:name=".service.NetworkService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <!--
         activity
@@ -53,18 +56,17 @@
         </activity
         -->
 
-
-
         <receiver
             android:name=".service.ConnectionChangeReceiver"
             android:enabled="true"
-            android:exported="true">
-        </receiver>
+            android:exported="true"></receiver>
 
         <!--
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" /-->
+            android:value="@integer/google_play_services_version" /
+        -->
+
     </application>
 
 </manifest>

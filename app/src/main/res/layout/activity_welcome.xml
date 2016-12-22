@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.ucsd.mytest.WelcomeActivity" >
 
-    <Button
+    <!--Button
         android:id="@+id/raw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,15 +33,12 @@
          android:layout_below="@+id/apache"
          android:layout_marginTop="14dp"
          android:onClick="startVolleyNetworking"
-         android:text="Volley" />
+         android:text="Volley" /-->
 
     <Button
         android:id="@+id/aah"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/apache"
-        android:layout_below="@+id/volley"
-        android:layout_marginTop="14dp"
         android:onClick="startAAHNetworking"
         android:text="AAH" />
 
@@ -49,7 +46,7 @@
         android:id="@+id/okhttp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/apache"
+        android:layout_alignLeft="@+id/aah"
         android:layout_below="@+id/aah"
         android:layout_marginTop="14dp"
         android:onClick="startOKNetworking"
@@ -59,12 +56,21 @@
         android:id="@+id/anelokhttp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/apache"
+        android:layout_alignLeft="@+id/aah"
         android:layout_below="@+id/okhttp"
         android:layout_marginTop="14dp"
         android:onClick="startAnelOkNetworking"
         android:text="AnelOKHttp" />
 
+    <Button
+        android:id="@+id/anelaah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/aah"
+        android:layout_below="@+id/anelokhttp"
+        android:layout_marginTop="14dp"
+        android:onClick="startAnelAAHNetworking"
+        android:text="AnelAAH" />
 
     <!--Button
         android:id="@+id/volley2"

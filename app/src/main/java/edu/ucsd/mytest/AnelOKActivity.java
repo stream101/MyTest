@@ -5,12 +5,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.loopj.android.http.anel_okhttp.AnelOkHttpSyncClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
-import okhttp3.Request;
-import okhttp3.Response;
+import me.anel.okhttp.AnelOkHttpSyncClient;
 
 public class AnelOKActivity extends ActionBarActivity {
     final String TAG = "ANELOK";
@@ -26,9 +26,7 @@ public class AnelOKActivity extends ActionBarActivity {
 
         Thread t = new Thread(new FetchItemsThread());
         t.start();
-
     }
-
 
 
     private class FetchItemsThread implements Runnable {
@@ -38,12 +36,18 @@ public class AnelOKActivity extends ActionBarActivity {
             String url="http://www.google.com";
             try {
 
-                AnelOkHttpSyncClient client = new AnelOkHttpSyncClient();
+                String[] spec = {"UserReq", "Idempotent"};
+                AnelOkHttpSyncClient client = new AnelOkHttpSyncClient(spec);
 
                 Request request = new Request.Builder().url(url).build(); // Okhttp Request
 
-                Response response= client.newCallV2(request);
-                
+                // method 1: bytecode rewrite old interface
+                //Response response= client.newCallV2(request);
+
+                //method2: keep original interface
+                Response response=client.newCall(request).execute();
+
+
                 final String result = response.body().string();
 
                 if (result == null)

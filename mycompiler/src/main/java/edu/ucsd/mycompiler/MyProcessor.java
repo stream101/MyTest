@@ -18,8 +18,6 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 
-import edu.ucsd.myannotation.SetReq;
-
 /**
  * about Element:
  package com.example;	// PackageElement
@@ -56,8 +54,8 @@ public final class MyProcessor extends AbstractProcessor {
     @Override
     public Set<String> getSupportedAnnotationTypes() {
         Set<String> types = new LinkedHashSet<>();
-        types.add(SetReq.class.getCanonicalName());
-        debug ("add annotation type: " + SetReq.class.getCanonicalName() );
+        //types.add(SetReq.class.getCanonicalName());
+        //debug ("add annotation type: " + SetReq.class.getCanonicalName() );
         return types;
     }
 
@@ -68,13 +66,21 @@ public final class MyProcessor extends AbstractProcessor {
     }
 
     @Override
-    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        debug("jin xinxin enter process !!\n");
+    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {/*
+        StringBuilder builder = new StringBuilder();
+        builder.append("package edu.ucsd.mycompiler.generated;");
+        builder.append("\n");
+        builder.append("public class GeneratedAnnotationClass {\n");
+        builder.append("\tpublic String getMessage() {\n");
+        builder.append("\t\treturn ");
+
         // iterate over all @SetReq annotated
         for (Element annotatedElement : roundEnv.getElementsAnnotatedWith(SetReq.class)) {
-            debug(annotatedElement, "asType: " + annotatedElement.asType().toString() + '\n'
-                  + "getKind: " + annotatedElement.getKind() + '\n'
-                  +  "getEnclosingElement: " + annotatedElement.getEnclosingElement() + '\n');
+            String annotatedObj = ( "Annotation info: asType: " + annotatedElement.asType().toString() + ','
+                  + "getKind: " + annotatedElement.getKind() + ','
+                  +  "getEnclosingElement: " + annotatedElement.getEnclosingElement());
+            builder.append("\"" + annotatedObj + "\"");
+
 
             //currently on process class
             //if (annotatedElement.getKind() != ElementKind.CLASS) {
@@ -97,7 +103,22 @@ public final class MyProcessor extends AbstractProcessor {
 
 
         }
+        builder.append(";\n");
+        builder.append("\t}\n");
+        builder.append("}\n");
 
+        Filer filer = this.processingEnv.getFiler();
+        try {
+            JavaFileObject sourceFile = filer.createSourceFile("edu.ucsd.mycompiler.generated.GeneratedAnnotationClass");
+            Writer writer = sourceFile.openWriter();
+            writer.write(builder.toString());
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+*/
         return true;
     }
 

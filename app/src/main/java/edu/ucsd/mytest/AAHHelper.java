@@ -2,9 +2,9 @@ package edu.ucsd.mytest;
 
 import android.content.Context;
 
-import com.loopj.android.http.AnelClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+import me.anel.AnelClient;
+import me.anel.AsyncHttpResponseHandler;
+import me.anel.RequestParams;
 
 
 /**

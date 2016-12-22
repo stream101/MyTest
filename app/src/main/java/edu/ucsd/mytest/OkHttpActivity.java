@@ -1,17 +1,18 @@
 package edu.ucsd.mytest;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
 import java.io.IOException;
 
-import edu.ucsd.myannotation.SetReq;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import edu.ucsd.myannotation.Anel_property;
+
 
 public class OkHttpActivity extends ActionBarActivity {
     final String TAG="okhttp";
@@ -21,34 +22,35 @@ public class OkHttpActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_ok_http);
-         tv = (TextView)findViewById(R.id.okhttp_text);
+        tv = (TextView)findViewById(R.id.okhttp_text);
 
         Thread t = new Thread(new FetchItemsThread());
         t.start();
 
     }
 
-    void alertDialog () {
-        new AlertDialog.Builder(this).setTitle("Error").setMessage("Watch out!").show();
-    }
-
 
     private class FetchItemsThread implements Runnable {
-        @SetReq(timeout=30, retry = 2)
+        @Anel_property({"UserReq"})
         OkHttpClient client = new OkHttpClient();
 
         @Override
         public void run() {
             String url="http://www.google.com";
             Response response = null;
-
+            
            // GetExample example = new GetExample();
             try {
 
                 Request request = new Request.Builder().url(url).build();
 
                 response= client.newCall(request).execute();
+
+                //After annotation, insert :
+                //if (response == null)
+                //show Error message, and skip all response tainted stmt
                 final String result = response.body().string();
                 if (result == null)
                     Log.d(TAG, "result is null " );
@@ -59,6 +61,7 @@ public class OkHttpActivity extends ActionBarActivity {
                         @Override
                         public void run() {
                             tv.setText(result);
+                            //showAnnotationMessage();
                         }
                     });
                 }
@@ -79,6 +82,5 @@ public class OkHttpActivity extends ActionBarActivity {
         }
 
     }
-
 
 }
