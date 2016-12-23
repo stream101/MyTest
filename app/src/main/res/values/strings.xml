@@ -12,5 +12,6 @@
     <string name="title_activity_loader">LoaderActivity</string>
     <string name="title_activity_anel_ok">AnelOKActivity</string>
     <string name="title_activity_anel_aah">AnelAAHActivity</string>
+    <string name="title_activity_anel">AnelActivity</string>
 
 </resources>

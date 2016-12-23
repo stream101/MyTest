@@ -47,10 +47,6 @@
 
         <!--
         activity
-            android:name=".BasicActivity"
-            android:label="@string/title_activity_basic" >
-        </activity>
-        <activity
             android:name=".LoaderActivity"
             android:label="@string/title_activity_loader" >
         </activity
@@ -59,7 +55,7 @@
         <receiver
             android:name=".service.ConnectionChangeReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
 
         <!--
         <meta-data
@@ -67,6 +63,9 @@
             android:value="@integer/google_play_services_version" /
         -->
 
+        <activity
+            android:name=".AnelActivity"
+            android:label="@string/title_activity_anel"></activity>
     </application>
 
 </manifest>

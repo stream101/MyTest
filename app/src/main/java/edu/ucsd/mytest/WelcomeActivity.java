@@ -72,10 +72,15 @@ public class WelcomeActivity extends ActionBarActivity {
         startActivity(i);
     }
 
-//    public void startRetrofitNetworking(View view) {
-//        //Intent i = new Intent(this, RetrofitActivity.class);
-//        //startActivity(i);
-//    }
+    public void startAnelAAHNetworking(View view) {
+        Intent i = new Intent(this, AnelAAHActivity.class);
+        startActivity(i);
+    }
+
+    public void startAnelNetworking(View view) {
+        Intent i = new Intent(this, AnelActivity.class);
+        startActivity(i);
+    }
 //
 //    public void startLoader(View view) {
 //        Intent i = new Intent(this, LoaderActivity.class);

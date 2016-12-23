@@ -327,7 +327,7 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
                 response = (Object[]) message.obj;
                 if (response != null && response.length >= 4) {
                     onFailure((Integer) response[0], (Header[]) response[1], (byte[]) response[2], (Throwable) response[3]);
-                    //TBD: Add if(userReq)
+                    //xinxin: show network error
                     Toast.makeText(this.context, "Network error", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.e(LOG_TAG, "FAILURE_MESSAGE didn't got enough params");

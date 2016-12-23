@@ -52,6 +52,13 @@ public class AsyncHttpRequest implements Runnable {
         this.responseHandler = Utils.notNull(responseHandler, "responseHandler");
     }
 
+    public AbstractHttpClient getClient(){return client;}
+
+    public HttpContext getContext(){return context;}
+
+    public HttpUriRequest getRequest(){return request;}
+
+    public ResponseHandlerInterface getResponseHandler(){return responseHandler;}
     /**
      * This method is called once by the system when the request is about to be
      * processed by the system. The library makes sure that a single request

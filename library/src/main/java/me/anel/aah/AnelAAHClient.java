@@ -2,7 +2,11 @@ package me.anel.aah;
 
 import com.loopj.android.http.AsyncHttpClient;
 
+import org.apache.http.Header;
+
 import me.anel.AnelClient;
+import me.anel.AsyncHttpResponseHandler;
+import me.anel.RequestHandle;
 
 /**
  * Async http client's Anel representation
@@ -41,33 +45,40 @@ public class AnelAAHClient extends AsyncHttpClient {
     }
 
 
-//    @Override
-//    public com.loopj.android.http.RequestHandle get(String url, com.loopj.android.http.AsyncHttpResponseHandler responseHandler) {
-//
-//
-//        AsyncHttpResponseHandler anelResponseHandler = new AsyncHttpResponseHandler() {
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-//                responseHandler.get
-//            }
-//
-//            @Override
-//            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-//
-//            }
-//        };
-//
-//        //Anel type RequestHanle
-//        me.anel.RequestHandle anelHandle =  client.get(url, anelResponseHandler);
-//        //Anel type AsyncHttpRequest
-//        AsyncHttpRequest anelRequest = anelHandle.getRequest();
-//
-//
-//        AnelAAHAsyncHttpRequest anelaahRequest = new AnelAAHAsyncHttpRequest();
-//
-//        com.loopj.android.http.RequestHandle  resp = new me.loopj.android.anel.aah.AnelAAHRequestHandle(request);
-//        return resp;
-//    }
 
+    @Override
+    public com.loopj.android.http.RequestHandle get(String url, com.loopj.android.http.ResponseHandlerInterface responseHandler) {
+        final com.loopj.android.http.AsyncHttpResponseHandler originResponseHandler = (com.loopj.android.http.AsyncHttpResponseHandler)responseHandler;
+
+        //Anel type RequestHandler & Anel responseHandler
+        RequestHandle anelHandler =  client.get(url, new AsyncHttpResponseHandler() {
+            // Need to transform to AAH response callback. Here we call original callback code
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                originResponseHandler.onSuccess(statusCode, headers, responseBody);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+               originResponseHandler.onFailure(statusCode, headers, responseBody, error);
+
+            }
+        });
+
+        //Anel type AsyncHttpRequest
+        //AsyncHttpRequest anelRequest = anelHandler.getRequest();
+
+        //transform Anel AsyncHttpRequest to AAH AsyncHttpRequest
+        //The relation between HttpRequest and ResponseHandle is: HttpRequest can trigger responseHandler.sendFailureMessage
+        //which send Looper message, Loop calls onFailure() callback.
+        //We do not need to *modify* the original responseHandler, because the stuff should be done in the callback
+        //is already internally in Anel(including response validity check and show error message). If the original
+        //callback has no conflict with internal checking, we just directly execute it.
+        //AnelAAHAsyncHttpRequest anelaahRequest = new AnelAAHAsyncHttpRequest(anelRequest.getClient(),
+         //       anelRequest.getContext(), anelRequest.getRequest(), responseHandler);
+
+        //requestHandler is just used to cancel a request. Do not implement it for now.
+        return null;
+    }
 
 }
